@@ -13,22 +13,25 @@ export const warehouseApi = createApi({
     }),
     createWarehouse: builder.mutation({
       query: (warehouse) => ({
-        url: '/warehouses',
         method: 'POST',
-        body: warehouse,
+        headers: { 'Content-Type': 'application/json' },
+        url: '/warehouses',       
+        body: JSON.stringify(warehouse)
       }),
     }),
     updateWarehouse: builder.mutation({
-      query: ({ id, ...changes }) => ({
-        url: `/warehouses/${id}`,
+      query: ( warehouse ) => ({
         method: 'PUT',
-        body: changes,
+        headers: { 'Content-Type': 'application/json' },
+        url: `/warehouses/${warehouse.id}`,  
+        body: JSON.stringify(warehouse)
       }),
     }),
     deleteWarehouse: builder.mutation({
       query: (id) => ({
-        url: `/warehouses/${id}`,
         method: 'DELETE',
+        url: `/warehouses/${id}`,
+        
       }),
     }),
   }),

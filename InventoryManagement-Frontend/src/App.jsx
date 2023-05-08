@@ -1,3 +1,25 @@
+// import React from "react";
+// import Warehouse from "./components/Warehouse";
+// import MenuAppBar from "./components/MenuAppBar";
+// import WarehouseList from "./components/WarehouseList";
+
+// // import "./App.css";
+
+// function App() {
+//   return (
+//     <>
+//     <MenuAppBar />
+//     <div className="App">
+//       <Warehouse />
+//       <WarehouseList />
+
+//     </div>
+//     </>
+//   );
+// }
+
+// export default App;
+
 import { useState, useRef } from "react";
 import {
   useCreateWarehouseMutation,
@@ -5,10 +27,15 @@ import {
   useFindAllWarehouseQuery,
   useUpdateWarehouseMutation,
 } from "./api/warehouseApi";
-
+import { useSelector, useDispatch } from 'react-redux';
 import { Warehouse } from "./components/Warehouse";
+import MenuAppBar from "./components/MenuAppBar";
+import WarehouseList from "./components/WarehouseList";
+
+
 
 function App() {
+  const dispatch = useDispatch();
   const { data: warehouses, refetch } = useFindAllWarehouseQuery();
   const [createWarehouse] = useCreateWarehouseMutation();
   const [updateWarehouse] = useUpdateWarehouseMutation();
@@ -56,6 +83,10 @@ function App() {
   };
 
   return (
+    <>
+    <MenuAppBar />
+    
+    {/* <WarehouseComponent /> */}
     <div className="App">
       <h1>Warehouse Management System</h1>
       <form onSubmit={handleSubmit}>
@@ -76,12 +107,13 @@ function App() {
           <input type="text" ref={contactPersonRef} required />
         </label>
         <label>
-          Capacity:
+          Max Capacity:
           <input type="number" ref={capacityRef} required />
         </label>
         <button type="submit">Add Warehouse</button>
       </form>
       <div className="warehouses-container">
+      
         {warehouses &&
           warehouses.map((warehouse) => (
             <Warehouse
@@ -89,10 +121,13 @@ function App() {
               warehouse={warehouse}
               handleDelete={handleDelete}
               handleUpdate={handleUpdate}
+              refetch={refetch}
             />
+            
           ))}
       </div>
     </div>
+    </>
   );
 }
 
