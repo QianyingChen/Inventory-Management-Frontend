@@ -3,9 +3,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin-bottom: 16px;
 }
-
 /* Styles for the warehouse input fields */
 .warehouse-input-field {
   padding: 8px;

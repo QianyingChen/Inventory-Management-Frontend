@@ -1,25 +1,3 @@
-// import React from "react";
-// import Warehouse from "./components/Warehouse";
-// import MenuAppBar from "./components/MenuAppBar";
-// import WarehouseList from "./components/WarehouseList";
-
-// // import "./App.css";
-
-// function App() {
-//   return (
-//     <>
-//     <MenuAppBar />
-//     <div className="App">
-//       <Warehouse />
-//       <WarehouseList />
-
-//     </div>
-//     </>
-//   );
-// }
-
-// export default App;
-
 import { useState, useRef } from "react";
 import {
   useCreateWarehouseMutation,
@@ -29,9 +7,9 @@ import {
 } from "./api/warehouseApi";
 import { useSelector, useDispatch } from 'react-redux';
 import { Warehouse } from "./components/Warehouse";
-import MenuAppBar from "./components/MenuAppBar";
 import WarehouseList from "./components/WarehouseList";
-
+import MiniVariantDrawer from "./components/MiniVariantDrawer";
+import './App.css'
 
 
 function App() {
@@ -84,7 +62,10 @@ function App() {
 
   return (
     <>
-    <MenuAppBar />
+
+   <MiniVariantDrawer />
+   <WarehouseList />
+
     
     {/* <WarehouseComponent /> */}
     <div className="App">
